@@ -1,0 +1,17 @@
+/************************************************************************\
+	Magnus Aviation
+	---------------------------------------------------------------------
+	MODULE:		main.scss
+	PURPOSE:	import main styles for site
+	@author:	dan moe & chris grace
+/************************************************************************/
+
+/** DO NO EDIT THE MAIN .CSS FILES DIRECTLY. THE SKY WILL FALL DOWN!!! **/
+
+//IMPORTS
+@import 'bootstrap';
+@import 'font-awesome';
+@import 'mixins';
+@import 'globals';
+@import 'structure';
+@import 'typography';

@@ -1,0 +1,115 @@
+/************************************************************************\
+  Magnus Aviation
+  ---------------------------------------------------------------------
+  MODULE:   mixins.scss
+  PURPOSE:  text styles 
+  @author:  dan moe & chris grace
+
+  CODEMAP:
+  ---------------------------------------------------------------------
+  ^1 VENDOR PREFIXES
+  ^2 MEDIA QUERY BREAKPOINTS
+  ^3 TRANSITIONS
+  ^4 SET FONT STYLE
+
+/************************************************************************/
+
+
+// ^1 VENDOR PREFIXES
+//-----------------------------------------------------------------------/
+
+@mixin vendor-prefix($name, $value) {
+  -webkit-#{$name}: #{$value};
+  -ms-#{$name}: #{$value};
+  -moz-#{$name}: #{$value};
+  -o-#{$name}: #{$value};
+  #{$name}: #{$value};
+}
+
+// ^2 MEDIA QUERY BREAKPOINTS
+//-----------------------------------------------------------------------/
+
+@mixin respond-to($breakpoint, $inherit:true) {
+  @if $breakpoint == 'small' and $inherit == true {
+    @media (min-width: 768px) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint == 'small' and $inherit == false {
+    @media (min-width: 768px) and (max-width: 991px) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint == 'medium' and $inherit == true {
+    @media (min-width: 992px) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint == 'medium' and $inherit == false {
+    @media (min-width: 992px) and (max-width: 1091px) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint == 'large' and $inherit == true {
+    @media (min-width: 1092px) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint == 'xlarge' and $inherit == true {
+    @media (min-width: 1400px) {
+      @content;
+    }
+  }
+}
+
+// ^3 TRANSITIONS
+//-----------------------------------------------------------------------/
+
+@mixin transition($prop:'all', $time:0.5s){
+  @include vendor-prefix(transition, $prop $time);
+}
+
+// get sprite img svg and fallback to png
+@mixin get-sprite($x:0, $y:0) {
+  background : url('../img/sprite.png') no-repeat $x $y;
+
+  html.svg & {
+    background-image : url('../img/sprite.svg') $x $y;
+  }
+}
+
+// ^4 SET FONT STYLE
+//-----------------------------------------------------------------------/
+
+@mixin futura($style:'book') {
+
+  @if $style == 'book' {
+    font-family: 'Futura LT W01 Book', helvetica, arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+  }
+
+  @else if $style == 'italic' {
+    font-family: 'Futura LT W01 Book Oblique', helvetica, arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+  }
+
+  @else if $style == 'bold' {
+    font-family: 'Futura LT W01 Bold', helvetica, arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+  }
+
+  @else if $style == 'bolditalic' {
+    font-family: 'Futura LT W01 Bold Oblique', helvetica, arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+  }
+
+}

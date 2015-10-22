@@ -1,0 +1,370 @@
+/************************************************************************\
+	Magnus Aviation
+	---------------------------------------------------------------------
+	MODULE:		structure.scss
+	PURPOSE:	core structure
+	@author:	dan moe & chris grace
+
+	CODEMAP:
+	---------------------------------------------------------------------
+	^1 BASE STYLES
+	^2 BOOTSTRAP OVERRIDES
+	^3 MASTHEAD
+		^3a	Navigation wrapper
+		^3b	Logo
+		^3c	Navigation
+	^4 HERO IMAGE AREA / HOME PAGE SLIDER
+	^5 GLOBAL FOOTER
+
+/************************************************************************/
+
+/** DO NO EDIT THE MAIN .CSS FILES DIRECTLY. THE SKY WILL FALL DOWN!!! **/
+
+// ^1 BASE STYLES
+//-----------------------------------------------------------------------/
+
+body {
+	padding-top: 50px;
+
+	@include respond-to(small) {
+		padding-top: 0;
+	}
+}
+
+// Make footer stick to bottom for screensizes > tablet
+@include respond-to(medium) {
+	html, body {
+		margin : 0;
+		height : 100%;
+	}
+
+	main {
+		height : 100%;
+		min-height: 100%;
+		height: auto !important;
+		margin: 0 auto (-$stickyHeight); 
+	}
+
+	#push {
+		height : $stickyHeight;
+	}
+
+	#footer {
+		height : $stickyHeight; // height only, further styling below
+	}
+}
+
+#content {
+	padding-bottom : $pad;
+}
+
+// ^2 BOOTSTRAP OVERRIDES
+//-----------------------------------------------------------------------/
+
+// how burger menu on tablets
+@include respond-to(small,false) {
+
+	.navbar-header {
+		float : none;
+	}
+
+	.navbar-toggle {
+		display : block;
+	}
+
+	.navbar-collapse.collapse {
+		display : none !important;
+	}
+
+	.collapse.in {
+		display : block !important;
+	}
+}
+
+// Set wider container widths
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+@media (min-width: 1400px) {
+  .container {
+    width: 1400px;
+  }
+}
+@media (min-width: 1800px) {
+  .container {
+    width: 1800px;
+  }
+}
+
+
+// ^3 MASTHEAD
+//-----------------------------------------------------------------------/
+
+// ^3a Navigation wrapper
+.navbar {
+	background : $primary;
+	border : none;
+
+	@include respond-to(small) {
+		margin-top : $pad*4;
+		padding : $pad $pad*2;
+		position : absolute;
+		z-index : 100;
+	}
+
+	@include respond-to(medium) {
+		padding : 0 $pad*2;
+	}
+
+	.navbar-toggle {
+		border : 0;
+
+		&:hover,
+		&:focus {
+			background : none;
+		}
+
+		.icon-bar {
+			@include transition();
+		}
+
+		&:hover .icon-bar {
+			background : $secondary;
+		}
+	}
+
+	.social {
+		float : right;
+		// display: inline-block;
+		padding-top : 0.5em;
+		margin-right :1em;
+
+		@include respond-to(medium) {
+			margin : 0.75em 0 0 1em;
+		}
+	}
+}
+
+// ^3b Logo
+.logo {
+	@include get-sprite();
+	&.touchscreen {
+		background-position: top right;
+		width : 60px;
+	}
+
+	&.desktop {
+		background-position: top left;
+		height : 120px;
+		width : 150px;
+		position : absolute;
+		top : -$pad*2;
+	}
+}
+
+// ^3c Navigation
+#navbar {
+	// mobile and up
+	background : $neutral-med;
+	max-height : none; //BS override
+
+	> ul {
+		padding : 0;
+		//float : right;
+
+		li {
+			list-style : none;
+		}
+
+		> li {
+			> a {
+				display : block;
+				padding : $pad;
+				color : $primary;
+				@include transition();
+				border-top : 1px solid $neutral-med;
+				border-bottom : 1px solid $neutral-med;
+				text-transform: uppercase;
+
+				&:after {
+					content : '\003e'; // ISO greater than symbol
+					float : right;
+				}
+			}
+
+			&:hover > a {
+				color : $secondary;
+				border-top : 1px solid #FFF;
+				border-bottom : 1px solid #FFF;
+			}
+		}
+
+		// drop down
+		ul {
+			display : none;
+			padding : $pad;
+			background : $neutral-light;
+			@include transition();
+
+			li > a {
+				display : block;
+				padding : $pad/2;
+				color : $primary;
+				@include transition();
+
+				&:before {
+					content : '\003e'; // ISO greater than symbol
+					float : left;
+					margin-right : $pad/2;
+				}
+
+				&:hover {
+					color : $secondary;
+				}
+			}
+		}
+
+		// show dd menu
+		li:hover ul {
+			display : block;
+		}
+	}
+
+	// tablet only
+	@include respond-to(small,false) {
+		position : absolute;
+		width : 100%;
+		left: 0;
+		top: 76px;
+		padding : $pad;
+	}
+
+	// small desktop and up
+	@include respond-to(medium) {
+		float : right;
+		background : none;
+
+		> ul {
+			margin : 0;
+			float : right;
+
+			> li {
+				display : inline-block;
+				
+				> a {
+					border : none;
+					color : #FFF;
+					position : relative;
+					border : none !important;
+					padding : $pad*2 $pad;
+
+					&:after {
+						content : '\002F'; // ISO forward slash
+						position : absolute;
+						right : -0.5em;
+						color:  $neutral !important;
+					}
+				}
+
+				&:last-of-type a:after {
+					content : '';
+				}
+
+				// drop down
+				ul {
+					position: absolute;
+					background : $neutral-med;
+					padding : $pad/2;
+
+					li a {
+						text-transform: uppercase;
+
+						&:before {
+							float : right;
+							margin-right: 0;
+							margin-left : $pad;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+// ^4 HERO IMAGE AREA / HOME PAGE SLIDER
+//-----------------------------------------------------------------------/
+
+.hero {
+	position : relative;
+	padding : 0;
+
+	.container {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		@include transition();
+
+		@include respond-to(small) {
+			top: 62%;
+		}
+
+		@include respond-to(medium) {
+			top: 60%;
+		}
+
+		@include respond-to(xlarge) {
+			top: 50%;
+		}
+	}
+}
+
+// ^5 GLOBAL FOOTER
+//-----------------------------------------------------------------------/
+
+#footer {
+
+	.inner {
+		padding : $pad ;
+		background : $neutral-light;
+	}
+
+	ul {
+
+		li {
+			list-style : none;
+
+			ul {
+				padding : 0;
+			}
+		}
+	}
+}
+
+.footerlinks {
+	margin-bottom :1em;
+	padding : 0;
+
+	.social {
+		a {
+			height : 30px;
+			width : 30px;
+			display : inline-block;
+			padding : 0.3em;
+			background : $neutral-dark;
+
+			&:hover {
+				background : $neutral;
+			}
+		}
+	}
+}
+
+.legals {
+	padding : $pad 0;
+	ul, p {
+		padding-left : 0;
+	}
+}

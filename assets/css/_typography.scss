@@ -1,0 +1,197 @@
+/************************************************************************\
+	Magnus Aviation
+	---------------------------------------------------------------------
+	MODULE:		typography.scss
+	PURPOSE:	text styles 
+	@author:	dan moe & chris grace
+
+	CODEMAP:
+	---------------------------------------------------------------------
+	^1 NAVIGATION
+	^2 HOME PAGE HERO
+	^3 GLOBAL FOOTER
+
+/************************************************************************/
+
+body {
+	@include futura();
+	color : $primary;
+}
+
+.browserupgrade {
+	text-align : center;
+	background : $secondary;
+	color : #FFF;
+	margin : 0;
+	
+	a {
+		color : $primary;
+	}
+}
+
+// ^1 NAVIGATION
+//-----------------------------------------------------------------------/
+
+.navbar {
+
+	h2 {
+		color : #FFF;
+		font-size : 1em;
+		font-style : italic;
+		float : left;
+		margin-left : 1em;
+		color : $secondary;
+
+		@include respond-to(small) {
+			margin-left : 160px;
+			margin-top: 1.15em;
+		}
+
+		@include respond-to(medium) {
+			margin-top: 2.2em;
+		}
+
+		@media (min-width: 993px) and (max-width: 1220px) {
+			display : none;
+		}
+	}
+}
+
+// ^2 HOME PAGE HERO
+//-----------------------------------------------------------------------/
+
+.hero {
+
+	h1 {
+		text-align : center;
+		letter-spacing : 0.3em;
+
+		@include respond-to(small) {
+			font-size : 5em;
+		}
+
+		@include respond-to(medium) {
+			font-size : 8em;
+		}
+
+		@include respond-to(xlarge) {
+			font-size : 10em;
+		}
+	}
+
+	h2 {
+		text-transform: uppercase;
+		text-align : center;
+		color : #FFF;
+		letter-spacing : 0.1em;
+		font-size : 1em;
+
+		@include respond-to(small) {
+			font-size : 1.3em;
+		}
+
+		@include respond-to(medium) {
+			font-size : 1.7em;
+		}
+	}
+}
+
+// ^3 GLOBAL FOOTER
+//-----------------------------------------------------------------------/
+
+#footer {
+	p {
+		color : $neutral-dark;
+		font-size: 0.8em;
+		margin-bottom : 0;
+
+		a {
+			color : $neutral-dark;
+
+			&:hover {
+				color : $neutral;
+			}
+		}
+	}
+}
+
+.footerlinks {
+
+	li {
+		line-height: 1em;
+
+		a {
+			// display : block;
+			// padding : $pad;
+			color : $neutral-dark;
+			font-size : 0.8em;
+			text-transform: uppercase;
+			@include transition();
+
+			&:hover {
+				color : $neutral;
+			}
+		}
+
+		ul {
+			padding : 0.5em 0 !important;
+
+			li {
+				padding-left : 0.9em;
+				position: relative;
+
+				a {
+					text-transform: none;
+
+					&:before {
+						content : '\003e'; // ISO greater than symbol
+						position: absolute;
+						left : 0;
+						top : 0;
+					}
+				}
+			}
+		}
+	}
+
+	h4 {
+		color : $neutral-dark;
+		font-size : 0.8em;
+		text-transform: uppercase;
+		margin-top: 0;
+	}
+}
+
+.legals {
+
+	li {
+		display : inline;
+		font-size: 0.8em;
+
+		a {
+			color : $neutral-dark;
+			padding : 0 $pad;
+			position : relative;
+
+			&:after {
+				content : '\002F'; // ISO forward slash
+				position : absolute;
+				right : -0.3em;
+				top : 0.05em;
+				color:  $neutral;
+			}
+
+			&:hover {
+				color : $neutral;
+			}
+		}
+
+		&:first-child a {
+			padding-left : 0;
+		}
+
+		&:last-of-type a:after {
+			content: '';
+		}
+	}
+}

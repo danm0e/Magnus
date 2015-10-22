@@ -1,0 +1,70 @@
+/************************************************************************\
+	VuSystems
+	---------------------------------------------------------------------
+	MODULE:		globals.scss
+	PURPOSE:	global classes and variables
+	@author:	dan moe & chris grace
+
+	CODEMAP:
+	---------------------------------------------------------------------
+	^1 COLOUR VARIABLES
+	^2 SPACING VARIABLES
+	^3 GLOBAL CLASSES
+
+/************************************************************************/
+
+// ^1 COLOUR VARIABLES
+//-----------------------------------------------------------------------/
+
+// DARK BLUE
+$primary : #00172C;
+
+// LIGHT BLUE
+$secondary : #7A96BA;
+$secondary-med : lighten($secondary,25%);
+
+// GREY
+$neutral : #6E707F;
+$neutral-dark : lighten(#000,70%);
+$neutral-med : lighten(#000,90%);
+$neutral-light : lighten(#000,95%);
+
+
+// ^2 SPACING VARIABLES
+//-----------------------------------------------------------------------/
+
+$stickyHeight : 220px; // value for sticky footer
+$pad : 1em;
+
+
+// ^3 GLOBAL CLASSES
+//-----------------------------------------------------------------------/
+
+a {
+	text-decoration : none !important;
+}
+
+.img-responsive {
+	max-width : none;
+	width : 100%;
+}
+
+.social {
+	a {
+		display : block;
+		background : $secondary;
+		padding : $pad/2;
+		@include transition();
+
+		i {
+			display : block;
+			font-size : 1.5em;
+			color : #FFF;
+		}
+
+		&:hover {
+			background : $neutral;
+		}
+	}
+}
+
