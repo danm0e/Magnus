@@ -507,7 +507,8 @@ body {
 			@include transition();
 		}
 
-		&:hover .mask {
+		&:hover .mask,
+		&:focus .mask {
 			opacity: 1;
 		}
 	}

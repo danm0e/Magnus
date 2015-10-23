@@ -9,6 +9,10 @@
 $(document).ready(function() {
 /*----------------------------------------------------------------------*/	
 
+	// ENABLE HOVER STATE ON TOUCHSCREENS
+	/********************************************************************/
+	$('.tile').bind('touchstart touchend', function() {})
+
 	// ARROW JUMP NAVIGATION
 	/********************************************************************/
 	// cache each link with a hashtag
@@ -21,34 +25,35 @@ $(document).ready(function() {
 		})
 	})
 
-	// ARROW JUMP NAVIGATION
+	// HERO SLIDER
 	/********************************************************************/
 
-	$(".slider").slick({
+	// initialise main slider
+	$('.slider').slick({
 
 	    autoplay: true,
 	    dots: true,
 		// fade: true,
 		cssEase: 'linear',
-        arrows: false,
+        //arrows: true,
+        asNavFor: '.slider-title',
 
+        // set up the custom slide navigation
 		customPaging : function(slider, i) {
 	        var pager = $(slider.$slides[i]).data('pager')
 	        return '<a>' + pager + '</a>'
 	    },
 
-	    responsive: [{ 
-	        settings: {
-	            dots: false,
-	            arrows: false,
-	            infinite: false,
-	            slidesToShow: 1,
-	            slidesToScroll: 1
-	        } 
-	    }]
 	})
 
-$('.slick-dots').prependTo($('.hero .container'))
+	// set up title slider
+	$('.slider-title').slick({
+        arrows: false,
+        asNavFor: '.slider',
+	});
 
-/*----------------------------------------------------------------------*/	
+	// reflow the slider navigation to sit within the hero container
+	$('.slick-dots').prependTo($('.hero .container'))
+
+	/*----------------------------------------------------------------------*/	
 }) // END doc ready
