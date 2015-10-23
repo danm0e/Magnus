@@ -21,7 +21,7 @@ $primary : #00172C;
 
 // LIGHT BLUE
 $secondary : #7A96BA;
-$secondary-med : lighten($secondary,25%);
+$secondary-med : lighten($secondary,15%);
 
 // GREY
 $neutral : #6E707F;
@@ -68,3 +68,79 @@ a {
 	}
 }
 
+.btn-default {
+	border : none;
+	color : #FFF;
+	text-transform : uppercase;
+	@include vendor-prefix(border-radius, 0);
+	@include transition();
+	background : $secondary;
+
+	&:hover {
+		color : #FFF;
+		background : $primary;
+	}
+}
+
+.arrow {
+	display : block;
+	position: absolute;
+	height : 55px;
+	width : 55px;
+	@include transition();
+
+	&.up {
+		@include get-arrow('up');
+		&.dark {
+			@include get-arrow('up', 'dark');
+		}
+	}
+
+	&.down {
+		@include get-arrow('down');
+		&.dark {
+			@include get-arrow('down', 'dark');
+		}
+	}
+
+	&.left {
+		@include get-arrow('left');
+		&.dark {
+			@include get-arrow('left', 'dark');
+		}
+	}
+
+	&.right {
+		@include get-arrow('right');
+		// &.dark {
+		// 	@include get-arrow('right', 'dark');
+		// }
+	}
+
+	&.single {
+		&:hover {
+			background-color : $primary;
+		}
+	}
+
+	&.crosshair {
+		@include get-sprite(-361px,0);
+	}
+}
+
+.slick-dots {
+
+	a {
+		color : $secondary;
+		@include transition();
+
+		&:hover {
+			cursor: pointer;
+			color : #FFF;
+		}
+	}
+
+	.slick-active a {
+		color : #FFF;
+	}
+}

@@ -10,7 +10,9 @@
   ^1 VENDOR PREFIXES
   ^2 MEDIA QUERY BREAKPOINTS
   ^3 TRANSITIONS
-  ^4 SET FONT STYLE
+  ^4 GET SPRITE IMG SVG AND FALLBACK TO PNG
+  ^5 SET FONT STYLE
+  ^6 ARROW LINKS
 
 /************************************************************************/
 
@@ -49,19 +51,25 @@
   }
 
   @else if $breakpoint == 'medium' and $inherit == false {
-    @media (min-width: 992px) and (max-width: 1091px) {
+    @media (min-width: 992px) and (max-width: 1199px) {
       @content;
     }
   }
 
   @else if $breakpoint == 'large' and $inherit == true {
-    @media (min-width: 1092px) {
+    @media (min-width: 1200px) {
       @content;
     }
   }
 
   @else if $breakpoint == 'xlarge' and $inherit == true {
     @media (min-width: 1400px) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint == 'xxlarge' and $inherit == true {
+    @media (min-width: 1600px) {
       @content;
     }
   }
@@ -74,16 +82,20 @@
   @include vendor-prefix(transition, $prop $time);
 }
 
-// get sprite img svg and fallback to png
+// ^4 GET SPRITE IMG SVG AND FALLBACK TO PNG
+//-----------------------------------------------------------------------/
+
 @mixin get-sprite($x:0, $y:0) {
-  background : url('../img/sprite.png') no-repeat $x $y;
+  background-image : url('../img/sprite.png');
+  background-repeat : no-repeat;
+  background-position : $x $y;
 
   html.svg & {
-    background-image : url('../img/sprite.svg') $x $y;
+    background-image : url('../img/sprite.svg');
   }
 }
 
-// ^4 SET FONT STYLE
+// ^5 SET FONT STYLE
 //-----------------------------------------------------------------------/
 
 @mixin futura($style:'book') {
@@ -112,4 +124,38 @@
     font-weight: normal;
   }
 
+}
+
+// ^6 ARROW LINKS
+//-----------------------------------------------------------------------/
+
+@mixin get-arrow($direction, $color:'white') {
+    @if $direction == 'up' {
+      @if $color == 'dark'{
+        @include get-sprite(-308px,-55px);
+      } @else {
+        @include get-sprite(-308px,0);
+      }
+    }
+    @else if $direction == 'down' {
+      @if $color == 'dark'{
+        @include get-sprite(-252px,-55px);
+      } @else {
+        @include get-sprite(-252px,0);
+      }
+    }
+    @else if $direction == 'left' {
+      @if $color == 'dark'{
+        @include get-sprite(-147px,-55px);
+      } @else {
+        @include get-sprite(-147px,0);
+      }
+    }
+    @else if $direction == 'right' {
+      @if $color == 'dark'{
+        @include get-sprite(-198px,-55px);
+      } @else {
+        @include get-sprite(-198px,0);
+      }
+    }
 }

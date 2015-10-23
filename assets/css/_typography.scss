@@ -29,6 +29,10 @@ body {
 	}
 }
 
+strong {
+	@include futura('bold');
+}
+
 // ^1 NAVIGATION
 //-----------------------------------------------------------------------/
 
@@ -36,15 +40,16 @@ body {
 
 	h2 {
 		color : #FFF;
-		font-size : 1em;
+		font-size : 0.7em;
 		font-style : italic;
 		float : left;
-		margin-left : 1em;
+		// margin-left : 1em;
 		color : $secondary;
 
 		@include respond-to(small) {
 			margin-left : 160px;
 			margin-top: 1.15em;
+			font-size : 1em;
 		}
 
 		@include respond-to(medium) {
@@ -62,9 +67,10 @@ body {
 
 .hero {
 
-	h1 {
+	h1, .slick-dots {
 		text-align : center;
 		letter-spacing : 0.3em;
+		font-size : 2em;
 
 		@include respond-to(small) {
 			font-size : 5em;
@@ -85,6 +91,7 @@ body {
 		color : #FFF;
 		letter-spacing : 0.1em;
 		font-size : 1em;
+		margin : 0;
 
 		@include respond-to(small) {
 			font-size : 1.3em;
@@ -94,6 +101,91 @@ body {
 			font-size : 1.7em;
 		}
 	}
+}
+
+.homelinks {
+	
+	h3 {
+		margin-top: 0;
+		text-transform: uppercase;
+		color : #FFF;
+		font-size : 1.1em;
+		letter-spacing: 0.1em;
+		padding-right : $pad*3;
+		position : relative;
+
+		&:after {
+			content : '';
+			display : block;
+			width : 30px;
+			border : 1px dashed #FFF;
+			margin-top : 1em;
+		}
+
+		@include respond-to(small) {
+			font-size : 1.3em;
+		}
+
+		@include respond-to(xlarge) {
+			font-size : 1.5em;
+		}
+
+	}
+
+	p {
+		position : absolute;
+	    bottom: 0;
+	    width: 90%;
+	    color : #FFF;
+		padding-bottom: 0;
+		margin-bottom: 0;
+		font-size : 0.8em;
+
+		@include respond-to(small) {
+			font-size : 1em;
+		}
+
+		@include respond-to(xlarge) {
+			font-size : 1.2em;
+		}
+	}
+
+	.tile > p {
+		padding-bottom : 1.5em;
+	}
+
+	.contact {
+
+		a {
+			color : #FFF;
+			@include transition();
+
+			&:hover {
+				color : $secondary;
+			}
+		}
+
+		p span {
+			&:first-of-type {
+				margin-right : $pad/2;
+			}
+
+			&:last-of-type {
+				display : block;
+			}
+
+			@include respond-to(small){
+				display : block;
+			}
+		}
+	}
+
+	.quote-caption {
+		display : block;
+		padding-top : 0.6em;
+		font-style: italic;
+	}
+
 }
 
 // ^3 GLOBAL FOOTER

@@ -21,6 +21,34 @@ $(document).ready(function() {
 		})
 	})
 
+	// ARROW JUMP NAVIGATION
+	/********************************************************************/
+
+	$(".slider").slick({
+
+	    autoplay: true,
+	    dots: true,
+		// fade: true,
+		cssEase: 'linear',
+        arrows: false,
+
+		customPaging : function(slider, i) {
+	        var pager = $(slider.$slides[i]).data('pager')
+	        return '<a>' + pager + '</a>'
+	    },
+
+	    responsive: [{ 
+	        settings: {
+	            dots: false,
+	            arrows: false,
+	            infinite: false,
+	            slidesToShow: 1,
+	            slidesToScroll: 1
+	        } 
+	    }]
+	})
+
+$('.slick-dots').prependTo($('.hero .container'))
 
 /*----------------------------------------------------------------------*/	
 }) // END doc ready
