@@ -11,7 +11,11 @@ $(document).ready(function() {
 
 	// ENABLE HOVER STATE ON TOUCHSCREENS
 	/********************************************************************/
-	$('.tile').bind('touchstart touchend', function() {})
+	//$('.tile').bind('touchstart touchend', function() {})
+	$('.tile').bind('touchend', function(e) {
+		//e.preventDefault();
+		$(this).toggleClass('hover_effect')
+	})
 
 	// ARROW JUMP NAVIGATION
 	/********************************************************************/
@@ -53,7 +57,56 @@ $(document).ready(function() {
 	});
 
 	// reflow the slider navigation to sit within the hero container
-	$('.slick-dots').prependTo($('.hero .container'))
+	$('.slider .slick-dots').prependTo($('.hero .container'))
 
+	// set up portfolio slider 
+	$('.portfolio-slider').slick({
+        // arrows: false,
+	})
+
+	// set up chopper slider 
+	$('.chopper-slider').slick({
+		// infinite: true,
+		slidesToShow: 4,
+		slidesToScroll: 1,
+
+		responsive: [
+			{
+				breakpoint: 480,
+				settings: {
+					slidesToShow: 1,
+				}
+			},
+			{
+				breakpoint: 768,
+				settings: {
+					slidesToShow: 2,
+				}
+			},
+			{
+				breakpoint: 1024,
+				settings: {
+					slidesToShow: 3,
+				}
+			},
+		]
+
+	})
+
+	// set up news slider
+	$('.news-slider').slick({
+	    dots: true,
+	})
+
+	//$('.news-slider .slick-dots').clone().appendTo($('.page-template-news header'))
+
+
+	// SHOW PLACEHOLDER FOR DATE INPUT FIELDS
+	/********************************************************************/
+
+	$('.datefield').onfocus = function (event) {
+		this.type = 'date';
+		this.focus();
+	}
 	/*----------------------------------------------------------------------*/	
 }) // END doc ready

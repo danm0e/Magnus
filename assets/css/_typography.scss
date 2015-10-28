@@ -7,11 +7,20 @@
 
 	CODEMAP:
 	---------------------------------------------------------------------
-	^1 NAVIGATION
-	^2 HOME PAGE HERO
-	^3 GLOBAL FOOTER
+	^1 GLOBAL TEXT STYLES
+	^2 NAVIGATION
+	^3 HOME PAGE HERO
+	^4 GLOBAL FOOTER
+	^5 PAGE – SPLIT COLUMN HERO
+	^6 PAGE – TEAM / CONTACT
+	^7 PAGE – AIRCRAFT (Portfolio)
+		^7a Jets
+		^7b Choppers
 
 /************************************************************************/
+
+// ^1 GLOBAL TEXT STYLES
+//-----------------------------------------------------------------------/
 
 body {
 	@include futura();
@@ -33,7 +42,104 @@ strong {
 	@include futura('bold');
 }
 
-// ^1 NAVIGATION
+h1 {
+	font-size : 3em;
+	text-transform : uppercase;
+	letter-spacing : 0.1em;
+	padding-top : $pad*2;
+	padding-bottom : $pad/2;
+	border-bottom : 1px dotted $neutral-dark;
+
+	.color-bg & {
+		border-color : #FFF;
+	}
+}
+
+h2 {
+	font-size : 1.3em;
+	font-style : italic;
+	color : $secondary;
+	margin-bottom : $pad*2;
+}
+
+h3 {
+	.address & {
+		margin-top: 0;
+	}
+
+	form & {
+		text-transform: uppercase;
+	}
+}
+
+h4 {
+	font-size : 1.2em;
+	line-height : 1.4em;
+	margin-bottom : $pad*2;
+
+	strong {
+		@include futura('book');
+		font-weight : normal;
+		color : $secondary;
+	}
+
+	.text-content & {
+		margin-top : 0;
+	}
+}
+
+h5 {
+	font-size : 1.2em;
+	color : $secondary;
+}
+
+h6 {
+	text-transform : uppercase;
+
+	.mosaic & {
+		font-size : 1em;
+		padding-bottom : 0.5em;
+		border-bottom : 2px dotted #FFF;
+
+		@include respond-to(xlarge){
+			font-size : 1.5em;
+		}
+	}
+}
+
+.text-content {
+	p, li {
+		font-size : 0.9em;
+		color : $secondary;
+
+		a {
+			border-bottom : 2px solid;
+			color : inherit;
+			@include transition();
+
+			&:hover {
+				border-width : 1px;
+				opacity: 0.5;
+			}
+
+			// #quick-contacts &,
+			// &.arrow {
+			// 	border-bottom : none;
+			// }
+		}
+	}
+}
+
+p {
+	margin-bottom : $pad*1.5;
+
+	&.intro {
+		font-size : 1.2em;
+		color : #000;
+	}
+}
+
+// ^2 NAVIGATION
 //-----------------------------------------------------------------------/
 
 .navbar {
@@ -62,7 +168,7 @@ strong {
 	}
 }
 
-// ^2 HOME PAGE HERO
+// ^3 HOME PAGE HERO
 //-----------------------------------------------------------------------/
 
 .hero {
@@ -91,6 +197,7 @@ strong {
 		color : #FFF;
 		letter-spacing : 0.1em;
 		font-size : 1em;
+		font-style : normal;
 		margin : 0;
 
 		@include respond-to(small) {
@@ -188,7 +295,7 @@ strong {
 
 }
 
-// ^3 GLOBAL FOOTER
+// ^4 GLOBAL FOOTER
 //-----------------------------------------------------------------------/
 
 #footer {
@@ -285,5 +392,129 @@ strong {
 		&:last-of-type a:after {
 			content: '';
 		}
+	}
+}
+
+// ^5 PAGE – SPLIT COLUMN HERO
+//-----------------------------------------------------------------------/
+
+.color-bg {
+	h2, p {
+		color : #FFF;
+	}
+}
+
+.text-content ul {
+	padding-left : 0;
+	clear : both;
+
+	li {
+		display : block;
+		position : relative;
+		padding-left : $pad;
+
+		&:before {
+			content:'\2022';
+			position : absolute;
+			left : 0;
+		}
+	}
+
+	&.two-col {
+		padding-bottom : $pad*2;
+		li {
+			@include respond-to(small){
+				display : inline-block;
+				width : 49%;
+				margin-right: -4px;
+			}
+		}
+	}
+}
+
+// ^6 PAGE – TEAM / CONTACT
+//-----------------------------------------------------------------------/
+
+.staff-biog p:last-of-type a,
+.contact-details .textwrap + p a {
+	color : #000;
+	font-size : 1.2em;
+	@include transition();
+	border-bottom : none;
+
+	i {
+		display : inline-block;
+		padding : 0.25em;
+		margin-left : 0.5em;
+		background : $secondary;
+		color : #FFF;
+		@include transition();
+	}
+
+	&:hover {
+		color : $secondary;
+		opacity: 1;
+
+		i {
+			background : $neutral;
+		}
+	}
+}
+
+.contact-details p:last-of-type a {
+	color : #FFF;
+	i {
+		background : $primary;
+	}
+
+	&:hover {
+		color : $primary;
+
+		i {
+			background : $neutral;
+			//color : $secondary;
+		}
+	}
+}
+
+
+.contact-details {
+
+	h3 {
+		margin-bottom : $pad;
+	}
+
+	p {
+		margin-bottom : 0;
+	}
+}
+
+// ^7 PAGE – AIRCRAFT (Portfolio)
+//-----------------------------------------------------------------------/
+
+//^7a Jets
+.portfolio {
+	.textwrap p {
+		color : #000;
+	}
+
+	ul {
+		padding : 0;
+		li {
+			display : block;
+		}
+	}
+}
+
+//^7b Choppers
+.chopper-spec {
+	h3 {
+		color : #FFF;
+		margin : 0 0 1em 0;
+	}
+
+	p {
+		margin : 0;
+		color : #FFF;
 	}
 }

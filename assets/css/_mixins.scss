@@ -13,6 +13,7 @@
   ^4 GET SPRITE IMG SVG AND FALLBACK TO PNG
   ^5 SET FONT STYLE
   ^6 ARROW LINKS
+  ^7 ABSOLUTE CENTRE
 
 /************************************************************************/
 
@@ -69,7 +70,7 @@
   }
 
   @else if $breakpoint == 'xxlarge' and $inherit == true {
-    @media (min-width: 1600px) {
+    @media (min-width: 1710px) {
       @content;
     }
   }
@@ -158,4 +159,15 @@
         @include get-sprite(-198px,0);
       }
     }
+}
+
+// ^7 ABSOLUTE CENTRE
+//-----------------------------------------------------------------------/
+
+@mixin centre() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width : 90%;
+  transform: translate(-50%, -50%);
 }

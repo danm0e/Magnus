@@ -49,6 +49,10 @@ a {
 	width : 100%;
 }
 
+.color-bg {
+	background : $secondary;
+}
+
 .social {
 	a {
 		display : block;
@@ -146,6 +150,7 @@ a {
 }
 
 .slick-arrow {
+	// Main homepage slider
 	position : absolute;
 	top :0;
 	z-index : 1;
@@ -179,7 +184,153 @@ a {
 
 	&:hover {
 		&:after {
-			background-color : $primary;
+			//background-color : $primary;
+			//border : 1px solid #FFF;
+			opacity: 0.5;
+		}
+	}
+
+	// Portfolio slider on the Jets pages
+	.portfolio-slider & {
+		width : 20px;
+
+		&:after {
+			background-color : #000;
+			top : 45%;
+			left : 0;
+			height : 20px;
+			width : 20px;
+			@include get-sprite(-364px,-72px);
+		}
+
+		&.slick-next:after {
+			left : auto;
+			right : 0;
+			@include get-sprite(-392px,-72px);
+		}
+
+		&:hover:after {
+			background-color : $neutral;
+		}
+	}
+
+	// Portfolio slider on the Chopper pages
+	.chopper-slider &,
+	.page-template-news & {
+		width : 50px;
+
+		&:after {
+			top : 40%;
+			left : 0;
+			right : 0;
+		}
+
+		&.slick-next {
+			right : -11%;
+			@include respond-to(small) {
+				right : -5%;
+			}
+
+			&:after {
+				@include get-arrow('right', 'dark');
+			}
+		}
+		&.slick-prev {
+			left : -11%;
+			@include respond-to(small) {
+				left : -5%;
+			}
+
+			&:after {
+				left : 10px;
+				@include get-arrow('left', 'dark');
+			}
+		}
+	}
+
+	// News slider arrow positioning
+	.page-template-news & {
+
+		&:after {
+			top : 8%;
+
+			@include respond-to(small){
+				top : 11%;
+			}
+
+			@include respond-to(medium){
+				top : 15%;
+			}
+
+			@include respond-to(large){
+				top : 18%;
+			}
+
+			@include respond-to(xlarge){
+				top : 25%;
+			}
+		}
+	}
+}
+
+form {
+	padding-bottom : $pad;
+
+	fieldset {
+		padding : 0 !important;
+
+		&.checklist {
+			padding-top : $pad !important;
+			padding-bottom : $pad !important;
+			clear : both;
+		}
+
+		&.pad-right {
+			@include respond-to(small) {
+				padding-right : $pad !important;
+			}
+		}
+	}
+
+	input[type=text],
+	input[type=email],
+	input[type=number],
+	input[type=date],
+	input[type=tel] {
+		border : none;
+		margin-bottom : $pad;
+		padding : $pad/2 $pad;
+		height : 40px;
+		margin-right : $pad;
+		
+	}
+
+	label {
+		color : #FFF;
+		margin-right : $pad*4;
+		font-weight : normal;
+	}
+
+	input[type=checkbox] {
+		margin-right : $pad/2;
+	}
+
+	textarea {
+		height : 150px;
+		margin-bottom : $pad;
+	}
+
+	button[type=submit],
+	input[type=submit] {
+		padding : $pad/2 $pad;
+		border : none;
+		background : $primary;
+		color : #FFF;
+		text-transform: uppercase;
+		@include transition();
+
+		&:hover {
+			background : $neutral;
 		}
 	}
 }

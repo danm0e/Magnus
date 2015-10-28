@@ -14,9 +14,18 @@
 		^3b	Logo
 		^3c	Navigation
 	^4 GLOBAL FOOTER
-	^5 HOME PAGE
+	^5 PAGE – HOME
 		^5a Hero image area
 		^5b Home page content boxes
+	^6 PAGE – SPLIT COLUMN HERO 
+	^7 PAGE – GENERIC
+	^8 PAGE – TEAM
+	^9 PAGE – AIRCRAFT
+		^9a Jets
+		^9b Choppers
+	^10 PAGE – NEWS
+	^11 PAGE – CONTACT
+	^12 PAGE – ENQUIRY
 
 /************************************************************************/
 
@@ -66,6 +75,11 @@
   }
 }
 
+.col-5 {
+	@include respond-to(medium) {
+		width : 20%;
+	} 
+}
 
 // ^2 BASE STYLES
 //-----------------------------------------------------------------------/
@@ -86,19 +100,19 @@ body {
 	}
 
 	main {
-		height : 100%;
-		min-height: 100%;
-		height: auto !important;
-		margin: 0 auto (-$stickyHeight); 
+		// height : 100%;
+		// min-height: 100%;
+		// height: auto !important;
+		// margin: 0 auto (-$stickyHeight); 
 	}
 
-	#push {
-		height : $stickyHeight;
-	}
+	// #push {
+	// 	height : $stickyHeight;
+	// }
 
-	#footer {
-		height : $stickyHeight; // height only, further styling below
-	}
+	// #footer {
+	// 	height : $stickyHeight; // height only, further styling below
+	// }
 }
 
 #content {
@@ -107,9 +121,60 @@ body {
 	@include respond-to(small) {
 		padding : $pad*4 0 $pad*6;
 	}
+	
+	.page & {
+		padding-top : 0;
+	}
 
 }
 
+#quick-contacts {
+	position : fixed;
+	right : 0;
+	top : 100px;
+
+	@include respond-to(small){
+		top : 230px;
+	}
+
+	@include respond-to(medium){
+		top : 209px;
+	}
+
+	ul {
+		padding : 0;
+
+		li {
+			list-style : none;
+			margin-bottom : 0.5em;
+
+			a {
+				display : block;
+				width : 150px;
+				position : relative;
+				padding : $pad $pad $pad $pad*3.5;
+				background : $neutral-light;
+				color : $secondary;
+				text-transform: uppercase;
+				margin-left : 73%;
+				@include transition();
+
+				i {
+					position : absolute;
+					left : 0.3em;
+					top : 0.3em;
+					margin-right : 0.5em;
+					font-size : 2em;
+				}
+
+				&:hover {
+					margin-left : 0;
+				}
+			}
+		}
+
+	}
+}
 
 // ^3 MASTHEAD
 //-----------------------------------------------------------------------/
@@ -117,18 +182,34 @@ body {
 // ^3a Navigation wrapper
 .navbar {
 	background : $primary;
-	border : none;
 
 	@include respond-to(small) {
-		margin-top : $pad*4;
-		padding : $pad $pad*2;
-		position : absolute;
-		z-index : 100;
+		background : transparent;
+		// margin-top : $pad*4;
+		// padding : $pad $pad*2;
+		// position : absolute;
+		// z-index : 100;
+
+		.page &,
+		.page-template-contact &,
+		.page-template-enquiry & {
+			background : #FFF;
+		}
+
+		.inner {
+			position : relative;
+			background : $primary;
+			margin-top : $pad*4;
+			padding : $pad $pad*2 0.2em $pad*2;
+		}
 	}
 
 	@include respond-to(medium) {
-		padding : 0 $pad*2;
+		.inner {
+			padding : 0 $pad*2;
+		}
 	}
+
 
 	.navbar-toggle {
 		border : 0;
@@ -157,6 +238,19 @@ body {
 			margin : 0.75em 0 0 1em;
 		}
 	}
+
+	// return to flow on generic pages
+	.page & {
+		// position : relative;
+		// position : relative;
+		// margin-bottom: 0;
+		// background : #FFF;
+	}
+
+	// scroll with page
+	@include respond-to(small) {
+		position : absolute;
+	}
 }
 
 // ^3b Logo
@@ -173,7 +267,7 @@ body {
 		height : 120px;
 		width : 150px;
 		position : absolute;
-		top : -$pad*2;
+		top : -$pad*2.5;
 	}
 }
 
@@ -192,6 +286,7 @@ body {
 		}
 
 		> li {
+
 			> a {
 				display : block;
 				padding : $pad;
@@ -271,7 +366,7 @@ body {
 					color : #FFF;
 					position : relative;
 					border : none !important;
-					padding : $pad*2 $pad;
+					padding : $pad*2.25 $pad;
 
 					&:after {
 						content : '\002F'; // ISO forward slash
@@ -310,6 +405,7 @@ body {
 //-----------------------------------------------------------------------/
 
 #footer {
+	clear : both;
 
 	.inner {
 		padding : $pad ;
@@ -371,7 +467,7 @@ body {
 }
 
 
-// ^5 HOME PAGE
+// ^5 PAGE – HOME
 //-----------------------------------------------------------------------/
 
 // ^5a Hero image area
@@ -531,3 +627,268 @@ body {
 		}
 	}
 }
+
+// ^6 PAGE – SPLIT COLUMN HERO 
+//-----------------------------------------------------------------------/
+
+.text-content {
+	padding : $pad;
+	padding-bottom : $pad*3;
+
+	.page-template-two-col-vertical &,
+	.page-template-two-col-vertical-bg & {
+		@include respond-to(small) {
+			padding : $pad*3;
+			padding-bottom : $pad*6;
+		}
+	}
+
+	.page & {
+		padding : $pad*4 0;
+	}
+
+	.page-template-team & {
+		padding : 0 0 $pad*4 0;
+	}
+
+	.page-template-aircraft &,
+	.page-template-news & {
+		padding-top : $pad*4;
+	}
+}
+
+.text-content-footer {
+	background : $neutral-med;
+}
+
+.text-content-footer .container {
+	padding-top : $pad*3;
+	padding-bottom : 0;
+
+	> div &:last-of-type {
+		padding-bottom : $pad*4;
+	}
+
+	@include respond-to(medium) {
+		> div {
+			padding : $pad*3;
+		}
+	}
+}
+
+.flex {
+	@include respond-to(medium) {
+		// display: -webkit-flex;
+		// display: -ms-flexbox;
+		// display: flex;
+		display : table;
+		height : 100%;
+		width : 100%;
+		overflow: hidden;
+	}
+}
+
+.flex .col {
+	background-size: cover;
+	background-position: center;
+
+	@include respond-to(medium) {
+		//flex: 1;
+		display : table-cell;
+		height : 100%;
+		margin-top : 9.35em;
+	}
+}
+
+.left-col {
+	min-height : 200px;
+	background-size: cover;
+	background-position: center;
+
+	@include respond-to(small) {
+		min-height : 300px;
+		margin-top : 9.35em;
+	}
+}
+
+// ^7 PAGE – GENERIC
+//-----------------------------------------------------------------------/
+
+.header {
+	text-align : center;
+
+	@include respond-to(small) {
+		padding-top : $pad*8;
+	}
+}
+
+div.intro {
+	margin-bottom : $pad*2;
+}
+
+// ^8 PAGE – TEAM
+//-----------------------------------------------------------------------/
+
+.mosaic {
+	padding-bottom : $pad*2;
+
+	a {
+		position : relative;
+		display : block;
+
+		.inner {
+			position : absolute;
+			width : 100%;
+			height: 100%;
+			padding : $pad;
+			background : rgba($primary, 0.8);
+			@include transition();
+			opacity: 0;
+
+			// @include respond-to(small){
+			// 	padding-top : 40%;
+			// }
+
+			h6, p {
+				color : #FFF;
+			}
+
+			.textwrap {
+				@include centre();
+				width : 90%;
+			}
+		}
+
+		&:hover .inner {
+			opacity: 1;
+		}
+	}
+}
+
+.staff-biog {
+	padding-bottom : $pad;
+}
+
+// ^9 PAGE – AIRCRAFT
+//-----------------------------------------------------------------------/
+
+//^9a Jets
+.portfolio {
+	padding-bottom : $pad*2;
+}
+
+//^9b Choppers
+.chopper-spec {
+	position : relative;
+
+	.inner {
+		position : relative;
+
+		.mask {
+			position : absolute;
+			width : 100%;
+			height : 100%;
+			padding : $pad;
+			background : rgba($primary, 0.8);
+			@include transition();
+			opacity: 0;
+
+			.textwrap {
+				@include centre();
+			}
+		}
+	}
+
+	&:hover .mask {
+		opacity: 1;
+	}
+}
+
+// ^10 PAGE – NEWS
+//-----------------------------------------------------------------------/
+
+//.news-slider {
+
+	.slick-dots {
+		position : relative;
+		z-index : 100;
+		padding : 0 $pad;
+		text-align : left;
+
+		li {
+			display : inline-block;
+			margin-right : 1em;
+
+			&.slick-active button {
+				border-color : $neutral-dark;
+				color : $neutral-dark;
+			}
+
+			button {
+				height : 30px;
+				width : 30px;
+				padding : 0;
+				border : 2px solid $secondary;
+				background : transparent;
+				color : $secondary;
+				@include transition();
+
+				&:hover {
+					color : #FFF;
+					background : $secondary;
+					border-color : $secondary;
+				}
+			}
+
+		}
+
+		header & {
+			margin-bottom : $pad*2;
+		}
+	}
+//}
+
+// ^11 PAGE – CONTACT
+//-----------------------------------------------------------------------/
+
+.page-template-contact {
+	#content {
+		// padding-bottom : $pad*8;
+	}
+}
+
+.contact-details {
+	> div {
+		position : relative;
+
+		> div, 
+		> section {
+			padding-bottom : $pad*2;
+		}
+
+		.textwrap {
+			padding : $pad 0;
+		}
+
+		.address {
+			@include respond-to(medium) {
+				position : absolute;
+				bottom : 100px;
+				right : 0;
+			}
+			@include respond-to(large) {
+				bottom : 84px;
+			}
+			@include respond-to(xlarge) {
+				bottom : 68px;
+			}
+			@include respond-to(xxlarge) {
+				bottom : 42px;
+			}
+		}
+	}
+}	
+
+// ^12 PAGE – ENQUIRY
+//-----------------------------------------------------------------------/
+
