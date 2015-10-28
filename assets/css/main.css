@@ -8287,6 +8287,7 @@ a {
   position: absolute;
   height: 55px;
   width: 55px;
+  border-bottom: none !important;
   -webkit-transition: all 0.5s;
   -ms-transition: all 0.5s;
   -moz-transition: all 0.5s;
@@ -8334,8 +8335,14 @@ a {
     background-position: -198px 0; }
     html.svg .arrow.right {
       background-image: url("../img/sprite.svg"); }
+    .arrow.right.dark {
+      background-image: url("../img/sprite.png");
+      background-repeat: no-repeat;
+      background-position: -198px -55px; }
+      html.svg .arrow.right.dark {
+        background-image: url("../img/sprite.svg"); }
   .arrow.single:hover {
-    background-color: #00172C; }
+    opacity: 0.5; }
   .arrow.crosshair {
     background-image: url("../img/sprite.png");
     background-repeat: no-repeat;
@@ -8343,24 +8350,53 @@ a {
     html.svg .arrow.crosshair {
       background-image: url("../img/sprite.svg"); }
 
-.slick-dots a {
-  color: #7A96BA;
-  -webkit-transition: all 0.5s;
-  -ms-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s; }
-  .slick-dots a:hover {
-    cursor: pointer;
+.slick-dots {
+  position: relative;
+  z-index: 100;
+  padding: 0 1em;
+  text-align: left; }
+  .slick-dots li {
+    display: inline-block;
+    margin-right: 1em; }
+    .slick-dots li.slick-active button {
+      border-color: #b3b3b3;
+      color: #b3b3b3; }
+    .slick-dots li button {
+      height: 30px;
+      width: 30px;
+      padding: 0;
+      border: 2px solid #7A96BA;
+      background: transparent;
+      color: #7A96BA;
+      -webkit-transition: all 0.5s;
+      -ms-transition: all 0.5s;
+      -moz-transition: all 0.5s;
+      -o-transition: all 0.5s;
+      transition: all 0.5s; }
+      .slick-dots li button:hover {
+        color: #FFF;
+        background: #7A96BA;
+        border-color: #7A96BA; }
+  .slick-dots a {
+    color: #7A96BA;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s; }
+    .slick-dots a:hover {
+      cursor: pointer;
+      color: #FFF; }
+  .slick-dots .slick-active a {
     color: #FFF; }
-.slick-dots .slick-active a {
-  color: #FFF; }
+  header .slick-dots {
+    margin-bottom: 2em; }
 
 .slick-arrow {
   position: absolute;
   top: 0;
   z-index: 1;
-  width: 15%;
+  width: 50px;
   height: 100%;
   border: none;
   background: transparent;
@@ -8860,7 +8896,8 @@ body {
       text-align: center; }
       .hero .container .slick-dots li {
         list-style: none;
-        display: inline; }
+        display: inline;
+        margin-right: 0; }
 
 .homelinks {
   padding: 0.25em; }
@@ -9046,35 +9083,65 @@ div.intro {
   .chopper-spec:hover .mask {
     opacity: 1; }
 
-.slick-dots {
-  position: relative;
-  z-index: 100;
-  padding: 0 1em;
-  text-align: left; }
-  .slick-dots li {
-    display: inline-block;
-    margin-right: 1em; }
-    .slick-dots li.slick-active button {
-      border-color: #b3b3b3;
-      color: #b3b3b3; }
-    .slick-dots li button {
-      height: 30px;
-      width: 30px;
-      padding: 0;
-      border: 2px solid #7A96BA;
-      background: transparent;
-      color: #7A96BA;
-      -webkit-transition: all 0.5s;
-      -ms-transition: all 0.5s;
-      -moz-transition: all 0.5s;
-      -o-transition: all 0.5s;
-      transition: all 0.5s; }
-      .slick-dots li button:hover {
-        color: #FFF;
-        background: #7A96BA;
-        border-color: #7A96BA; }
-  header .slick-dots {
-    margin-bottom: 2em; }
+.sidebar {
+  border-top: 3px dotted #e6e6e6;
+  padding-top: 2em; }
+  @media (min-width: 768px) {
+    .sidebar {
+      float: left;
+      border-top: none; } }
+  .sidebar section {
+    padding: 2em 0; }
+
+@media (min-width: 768px) {
+  .news.text-content .textwrap {
+    float: right; } }
+
+.news-excerpt > a {
+  display: block;
+  padding: 0.5em 1em;
+  -webkit-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s; }
+  .news-excerpt > a:hover {
+    background: #f2f2f2; }
+
+.search input[type=text] {
+  background: #f2f2f2;
+  width: 80%;
+  float: left; }
+  @media (min-width: 768px) {
+    .search input[type=text] {
+      width: 100%; } }
+  @media (min-width: 992px) {
+    .search input[type=text] {
+      width: 74%; } }
+.search button {
+  padding: 0.5em !important;
+  width: 40px;
+  height: 40px;
+  float: left;
+  background: #7A96BA !important; }
+  .search button:hover {
+    background: #6E707F !important; }
+
+.news .hero .arrow {
+  top: -70px; }
+  @media (min-width: 992px) {
+    .news .hero .arrow {
+      top: 40%; } }
+  .news .hero .arrow.left {
+    left: -1em; }
+    @media (min-width: 992px) {
+      .news .hero .arrow.left {
+        display: none; } }
+  .news .hero .arrow.right {
+    right: -1em; }
+    @media (min-width: 992px) {
+      .news .hero .arrow.right {
+        right: -5em; } }
 
 .contact-details > div {
   position: relative; }
@@ -9116,6 +9183,7 @@ div.intro {
 	^7 PAGE – AIRCRAFT (Portfolio)
 		^7a Jets
 		^7b Choppers
+	^8 NEWS
 
 /************************************************************************/
 body {
@@ -9161,12 +9229,14 @@ form h3 {
 h4 {
   font-size: 1.2em;
   line-height: 1.4em;
-  margin-bottom: 2em; }
+  margin-bottom: 1em; }
   h4 strong {
     font-family: 'Futura LT W01 Book', helvetica, arial, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-weight: normal;
+    color: #7A96BA; }
+  h4 em {
     color: #7A96BA; }
   .text-content h4 {
     margin-top: 0; }
@@ -9448,6 +9518,31 @@ p {
 .chopper-spec p {
   margin: 0;
   color: #FFF; }
+
+.news-excerpt > a h3 {
+  color: #00172C; }
+.news-excerpt > a .inner p {
+  color: #000;
+  font-size: 1.1em;
+  line-height: 1.4em; }
+.news-excerpt > a span {
+  color: #7A96BA; }
+
+.sidebar .rss-feed a {
+  border-bottom: none; }
+  .sidebar .rss-feed a i {
+    padding: 0.2em 0.3em;
+    font-size: 1.5em;
+    margin-right: 0.5em;
+    background: #f2f2f2; }
+.sidebar li {
+  padding-left: 0 !important;
+  line-height: 2em; }
+  .sidebar li:before {
+    display: none; }
+  .sidebar li a {
+    border-bottom: none;
+    font-size: 1.1em; }
 
 /* Slider */
 .slick-slider {

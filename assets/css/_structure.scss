@@ -530,6 +530,7 @@ body {
 			li {
 				list-style : none;
 				display : inline;
+				margin-right : 0;
 			}
 		}
 	}
@@ -807,46 +808,90 @@ div.intro {
 // ^10 PAGE – NEWS
 //-----------------------------------------------------------------------/
 
-//.news-slider {
 
-	.slick-dots {
-		position : relative;
-		z-index : 100;
-		padding : 0 $pad;
-		text-align : left;
+.sidebar {
+	border-top : 3px dotted $neutral-med;
+	padding-top : $pad*2;
 
-		li {
-			display : inline-block;
-			margin-right : 1em;
+	@include respond-to(small){
+		float : left;
+		border-top : none;
+	}
 
-			&.slick-active button {
-				border-color : $neutral-dark;
-				color : $neutral-dark;
-			}
+	section {
+		padding : $pad*2 0;
+	}
+}
 
-			button {
-				height : 30px;
-				width : 30px;
-				padding : 0;
-				border : 2px solid $secondary;
-				background : transparent;
-				color : $secondary;
-				@include transition();
-
-				&:hover {
-					color : #FFF;
-					background : $secondary;
-					border-color : $secondary;
-				}
-			}
-
-		}
-
-		header & {
-			margin-bottom : $pad*2;
+.news.text-content {
+	.textwrap {
+		@include respond-to(small){
+			float : right;
 		}
 	}
-//}
+}
+
+.news-excerpt > a {
+	display : block;
+	padding : $pad/2 $pad;
+	@include transition();
+
+	&:hover {
+		background : $neutral-light;
+	}
+}
+
+.search {
+	input[type=text] {
+		background : $neutral-light;
+		width : 80%;
+		float : left;
+	
+		@include respond-to(small) {
+			width : 100%;
+		}
+
+		@include respond-to(medium) {
+			width : 74%;
+		}
+	}
+
+	button {
+		padding : $pad/2 !important;
+		width : 40px;
+		height : 40px;
+		float : left;
+		background : $secondary !important;
+
+		&:hover {
+			background : $neutral !important;
+		}
+	}
+}
+
+.news .hero {
+
+	.arrow {
+		top : -70px;
+		@include respond-to(medium){
+			top : 40%;
+		}
+
+		&.left {
+			left : -1em;
+			@include respond-to(medium){
+				display : none;
+			}
+		}
+
+		&.right {
+			right : -1em;
+			@include respond-to(medium){
+				right : -5em;
+			}
+		}
+	}
+}
 
 // ^11 PAGE – CONTACT
 //-----------------------------------------------------------------------/

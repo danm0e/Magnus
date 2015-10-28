@@ -16,6 +16,7 @@
 	^7 PAGE – AIRCRAFT (Portfolio)
 		^7a Jets
 		^7b Choppers
+	^8 NEWS
 
 /************************************************************************/
 
@@ -75,11 +76,15 @@ h3 {
 h4 {
 	font-size : 1.2em;
 	line-height : 1.4em;
-	margin-bottom : $pad*2;
+	margin-bottom : $pad;
 
 	strong {
 		@include futura('book');
 		font-weight : normal;
+		color : $secondary;
+	}
+
+	em {
 		color : $secondary;
 	}
 
@@ -516,5 +521,52 @@ p {
 	p {
 		margin : 0;
 		color : #FFF;
+	}
+}
+
+// ^7 NEWS
+//-----------------------------------------------------------------------/
+
+.news-excerpt > a {
+
+	h3 {
+		color : $primary;
+	}
+
+	.inner p {
+		color : #000;
+		font-size : 1.1em;
+		line-height : 1.4em;
+	}
+
+	span {
+		color : $secondary;
+	}
+}
+
+.sidebar {
+	.rss-feed a {
+		border-bottom : none;
+
+		i {
+			padding : 0.2em 0.3em;
+			font-size : 1.5em;
+			margin-right : $pad/2;
+			background : $neutral-light;
+		}
+	}
+
+	li {
+		padding-left: 0 !important;
+		line-height: 2em;
+
+		&:before {
+			display : none;
+		}
+
+		a {
+			border-bottom : none;
+			font-size : 1.1em;
+		}
 	}
 }

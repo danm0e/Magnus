@@ -91,6 +91,7 @@ a {
 	position: absolute;
 	height : 55px;
 	width : 55px;
+	border-bottom : none !important;
 	@include transition();
 
 	&.up {
@@ -116,14 +117,15 @@ a {
 
 	&.right {
 		@include get-arrow('right');
-		// &.dark {
-		// 	@include get-arrow('right', 'dark');
-		// }
+		&.dark {
+			@include get-arrow('right', 'dark');
+		}
 	}
 
 	&.single {
 		&:hover {
-			background-color : $primary;
+			//background-color : $primary;
+			opacity: 0.5;
 		}
 	}
 
@@ -133,6 +135,37 @@ a {
 }
 
 .slick-dots {
+	position : relative;
+	z-index : 100;
+	padding : 0 $pad;
+	text-align : left;
+
+	li {
+		display : inline-block;
+		margin-right : 1em;
+
+		&.slick-active button {
+			border-color : $neutral-dark;
+			color : $neutral-dark;
+		}
+
+		button {
+			height : 30px;
+			width : 30px;
+			padding : 0;
+			border : 2px solid $secondary;
+			background : transparent;
+			color : $secondary;
+			@include transition();
+
+			&:hover {
+				color : #FFF;
+				background : $secondary;
+				border-color : $secondary;
+			}
+		}
+
+	}
 
 	a {
 		color : $secondary;
@@ -147,6 +180,10 @@ a {
 	.slick-active a {
 		color : #FFF;
 	}
+
+	header & {
+		margin-bottom : $pad*2;
+	}
 }
 
 .slick-arrow {
@@ -154,7 +191,7 @@ a {
 	position : absolute;
 	top :0;
 	z-index : 1;
-	width : 15%;
+	width : 50px;
 	height : 100%;
 	border : none;
 	background : transparent;
